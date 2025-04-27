@@ -1,7 +1,7 @@
-import Intro from "@/components/Intro";
-import Team from "@/components/Team";
-import Products from "@/components/Products";
-import Footer from "@/components/Footer";
+import Intro from "../components/Intro.js";
+import Team from "../components/team.js";
+import Products from "../components/products.js";
+import Footer from "../components/footer.js";
 
 export default function Home() {
   return (
