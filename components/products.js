@@ -27,7 +27,7 @@ export default function Products() {
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {products.map((product, index) => (
+        {Array.isArray(products) && products.map((product, index) => (
           <div
             key={product._id || index}
             data-aos="fade-up"
@@ -35,11 +35,11 @@ export default function Products() {
             className="bg-white text-black border border-black rounded-lg p-6 flex flex-col items-center shadow-md z-10"
           >
             <img
-              src={product.image}
-              alt={product.name}
+              src={product.image || "/default.jpg"}
+              alt={product.name || "Product"}
               className="w-48 h-48 object-cover rounded-md mb-4"
             />
-            <h3 className="text-lg font-semibold">{product.name}</h3>
+            <h3 className="text-lg font-semibold">{product.name || "Unnamed Product"}</h3>
           </div>
         ))}
       </div>
