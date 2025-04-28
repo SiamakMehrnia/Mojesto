@@ -1,24 +1,29 @@
-import { connectToDatabase } from './../../../utils/mongodb';
+import { MongoClient } from 'mongodb';
 
-export default async function handler(req, res) {
-  const { db } = await connectToDatabase();
+const uri = process.env.MONGO_URI;
+let client;
+let clientPromise;
 
-  if (req.method === 'POST') {
-    try {
-      const { name, image } = req.body;
-      const newProduct = await db.collection('product').insertOne({ name, image });
-      res.status(201).json(newProduct);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  } else if (req.method === 'GET') {
-    try {
-      const products = await db.collection('product').find().toArray();
-      res.status(200).json(products);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  } else {
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+if (!process.env.MONGO_URI) {
+  throw new Error('Please add your Mongo URI to .env.local');
+}
+
+if (process.env.NODE_ENV === 'development') {
+  if (!global._mongoClientPromise) {
+    client = new MongoClient(uri);
+    global._mongoClientPromise = client.connect();
   }
+  clientPromise = global._mongoClientPromise;
+} else {
+  client = new MongoClient(uri);
+  clientPromise = client.connect();
+}
+
+console.log("Trying to connect to MongoDB with URI:", process.env.MONGO_URI);
+console.log("Connecting to database...");
+
+export async function connectToDatabase() {
+  const client = await clientPromise;
+  const db = client.db('Mejsto'); // Explicitly specify the database name
+  return { client, db };
 }
