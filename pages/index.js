@@ -17,7 +17,6 @@ export default function Home() {
       <section id="products" className="scroll-mt-48">
         <Products />
       </section>
-
       <section id="contact" className="scroll-mt-4">
         <Footer />
       </section>
