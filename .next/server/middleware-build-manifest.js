@@ -24,11 +24,6 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/adminPanel.js"
-    ],
-    "/adminPanel/product-form": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/adminPanel/product-form.js"
     ]
   },
   "ampFirstPages": []
