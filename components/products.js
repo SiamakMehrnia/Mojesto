@@ -6,9 +6,7 @@ export default function Products() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/product`
-        );
+        const res = await fetch("/api/product");
         const data = await res.json();
         setProducts(data);
       } catch (error) {
@@ -51,3 +49,4 @@ export default function Products() {
     </section>
   );
 }
+
