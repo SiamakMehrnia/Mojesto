@@ -7,3 +7,20 @@ export default function AdminPanel() {
     </div>
   );
 }
+
+export async function getServerSideProps(context) {
+  const { req } = context;
+  const cookies = req.headers.cookie || "";
+
+  if (!cookies.includes("admin-auth=true")) {
+    return {
+      redirect: {
+        destination: "/adminpanel/login",
+        permanent: false,
+      },
+    };
+  }
+
+  return { props: {} };
+}
+
