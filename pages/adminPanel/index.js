@@ -15,7 +15,7 @@ export async function getServerSideProps(context) {
   if (!cookies.includes("admin-auth=true")) {
     return {
       redirect: {
-        destination: "/adminpanel/login",
+        destination: "/adminPanel/login",
         permanent: false,
       },
     };
