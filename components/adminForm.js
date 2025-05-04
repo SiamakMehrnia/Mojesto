@@ -101,22 +101,25 @@ export default function AdminForm() {
 
   return (
     <div className="min-h-screen bg-black text-white p-6 flex flex-col items-center relative">
-<button
-  onClick={handleBackToHome}
-  className="fixed top-4 left-4 z-50 bg-green-600 text-white px-4 py-2 text-sm sm:text-base rounded hover:bg-green-700 sm:top-6 sm:left-6"
->
-  ⬅ Back to Homepage
-</button>
+      <div className="fixed top-4 left-4 z-50 sm:top-6 sm:left-6">
+        <button
+          onClick={handleBackToHome}
+          className="bg-green-600 text-white px-4 py-2 text-sm sm:text-base rounded-md shadow-md hover:bg-green-700 transition"
+        >
+          ⬅ Back to Homepage
+        </button>
+      </div>
 
-{/* LogOut - بالا راست */}
-<button
-  onClick={handleLogout}
-  className="fixed top-4 right-4 z-50 bg-red-600 text-white px-4 py-2 text-sm sm:text-base rounded hover:bg-red-700 sm:top-6 sm:right-6"
->
-  LogOut
-</button>
+      <div className="fixed top-4 right-4 z-50 sm:top-6 sm:right-6">
+        <button
+          onClick={handleLogout}
+          className="bg-red-600 text-white px-4 py-2 text-sm sm:text-base rounded-md shadow-md hover:bg-red-700 transition"
+        >
+          LogOut
+        </button>
+      </div>
 
-      <h1 className="text-3xl font-bold mb-8">👨‍💼 Admin Panel</h1>
+      <h1 className="text-3xl font-bold mb-10 mt-4">👨‍💼 Admin Panel</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl w-full mb-12">
         <motion.div
