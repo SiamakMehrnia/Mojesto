@@ -57,11 +57,14 @@ export default function AdminForm() {
 
   const handleEditSubmit = async () => {
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${editType}/${editItem._id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(editItem),
-      });
+      await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/${editType}/${editItem._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(editItem),
+        }
+      );
       setEditItem(null);
       editType === "product" ? fetchProducts() : fetchTeam();
     } catch (err) {
@@ -74,7 +77,11 @@ export default function AdminForm() {
       await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${addType}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(addType === "team" ? newItem : { name: newItem.name, image: newItem.image }),
+        body: JSON.stringify(
+          addType === "team"
+            ? newItem
+            : { name: newItem.name, image: newItem.image }
+        ),
       });
       setNewItem({ name: "", image: "", role: "" });
       setAddType("");
@@ -136,12 +143,32 @@ export default function AdminForm() {
           </button>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
             {products.map((product) => (
-              <div key={product._id} className="bg-white text-black p-6 rounded-lg shadow-md flex flex-col items-center">
-                <img src={product.image || "/default.jpg"} alt={product.name} className="w-32 h-32 object-cover rounded mb-4" />
+              <div
+                key={product._id}
+                className="bg-white text-black p-6 rounded-lg shadow-md flex flex-col items-center"
+              >
+                <img
+                  src={product.image || "/default.jpg"}
+                  alt={product.name}
+                  className="w-32 h-32 object-cover rounded mb-4"
+                />
                 <h3 className="text-lg font-semibold">{product.name}</h3>
                 <div className="flex gap-2 mt-4">
-                  <button className="bg-blue-500 text-white px-3 py-1 rounded" onClick={() => { setEditItem(product); setEditType("product"); }}>Edit</button>
-                  <button className="bg-red-500 text-white px-3 py-1 rounded" onClick={() => handleDelete(product._id, "product")}>Delete</button>
+                  <button
+                    className="bg-blue-500 text-white px-3 py-1 rounded"
+                    onClick={() => {
+                      setEditItem(product);
+                      setEditType("product");
+                    }}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="bg-red-500 text-white px-3 py-1 rounded"
+                    onClick={() => handleDelete(product._id, "product")}
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             ))}
@@ -159,13 +186,33 @@ export default function AdminForm() {
           </button>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
             {teamMembers.map((member) => (
-              <div key={member._id} className="bg-white text-black p-6 rounded-lg shadow-md flex flex-col items-center">
-                <img src={member.image || "/default.jpg"} alt={member.name} className="w-32 h-32 object-cover rounded-full mb-4" />
+              <div
+                key={member._id}
+                className="bg-white text-black p-6 rounded-lg shadow-md flex flex-col items-center"
+              >
+                <img
+                  src={member.image || "/default.jpg"}
+                  alt={member.name}
+                  className="w-32 h-32 object-cover rounded-full mb-4"
+                />
                 <h3 className="text-lg font-semibold">{member.name}</h3>
                 <p className="text-gray-600">{member.role}</p>
                 <div className="flex gap-2 mt-4">
-                  <button className="bg-blue-500 text-white px-3 py-1 rounded" onClick={() => { setEditItem(member); setEditType("team"); }}>Edit</button>
-                  <button className="bg-red-500 text-white px-3 py-1 rounded" onClick={() => handleDelete(member._id, "team")}>Delete</button>
+                  <button
+                    className="bg-blue-500 text-white px-3 py-1 rounded"
+                    onClick={() => {
+                      setEditItem(member);
+                      setEditType("team");
+                    }}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="bg-red-500 text-white px-3 py-1 rounded"
+                    onClick={() => handleDelete(member._id, "team")}
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             ))}
@@ -177,15 +224,49 @@ export default function AdminForm() {
       {addType && (
         <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50">
           <div className="bg-white text-black p-6 rounded-lg shadow-lg w-full max-w-md">
-            <h2 className="text-xl font-bold mb-4">Neues {addType === "product" ? "Produkt" : "Teammitglied"}</h2>
-            <input type="text" placeholder="Name" value={newItem.name} onChange={(e) => setNewItem({ ...newItem, name: e.target.value })} className="w-full p-2 border mb-3 rounded" />
+            <h2 className="text-xl font-bold mb-4">
+              Neues {addType === "product" ? "Produkt" : "Teammitglied"}
+            </h2>
+            <input
+              type="text"
+              placeholder="Name"
+              value={newItem.name}
+              onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
+              className="w-full p-2 border mb-3 rounded"
+            />
             {addType === "team" && (
-              <input type="text" placeholder="Position" value={newItem.role} onChange={(e) => setNewItem({ ...newItem, role: e.target.value })} className="w-full p-2 border mb-3 rounded" />
+              <input
+                type="text"
+                placeholder="Position"
+                value={newItem.role}
+                onChange={(e) =>
+                  setNewItem({ ...newItem, role: e.target.value })
+                }
+                className="w-full p-2 border mb-3 rounded"
+              />
             )}
-            <input type="text" placeholder="Bild-URL" value={newItem.image} onChange={(e) => setNewItem({ ...newItem, image: e.target.value })} className="w-full p-2 border mb-3 rounded" />
+            <input
+              type="text"
+              placeholder="Bild-URL"
+              value={newItem.image}
+              onChange={(e) =>
+                setNewItem({ ...newItem, image: e.target.value })
+              }
+              className="w-full p-2 border mb-3 rounded"
+            />
             <div className="flex justify-end gap-2">
-              <button className="bg-gray-500 text-white px-4 py-2 rounded" onClick={() => setAddType("")}>Abbrechen</button>
-              <button className="bg-green-600 text-white px-4 py-2 rounded" onClick={handleAddSubmit}>Hinzufügen</button>
+              <button
+                className="bg-gray-500 text-white px-4 py-2 rounded"
+                onClick={() => setAddType("")}
+              >
+                Abbrechen
+              </button>
+              <button
+                className="bg-green-600 text-white px-4 py-2 rounded"
+                onClick={handleAddSubmit}
+              >
+                Hinzufügen
+              </button>
             </div>
           </div>
         </div>
@@ -196,14 +277,48 @@ export default function AdminForm() {
         <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50">
           <div className="bg-white text-black p-6 rounded-lg shadow-lg w-full max-w-md">
             <h2 className="text-xl font-bold mb-4">Bearbeiten</h2>
-            <input type="text" placeholder="Name" value={editItem.name || ""} onChange={(e) => setEditItem({ ...editItem, name: e.target.value })} className="w-full p-2 border mb-3 rounded" />
+            <input
+              type="text"
+              placeholder="Name"
+              value={editItem.name || ""}
+              onChange={(e) =>
+                setEditItem({ ...editItem, name: e.target.value })
+              }
+              className="w-full p-2 border mb-3 rounded"
+            />
             {editType === "team" && (
-              <input type="text" placeholder="Position" value={editItem.role || ""} onChange={(e) => setEditItem({ ...editItem, role: e.target.value })} className="w-full p-2 border mb-3 rounded" />
+              <input
+                type="text"
+                placeholder="Position"
+                value={editItem.role || ""}
+                onChange={(e) =>
+                  setEditItem({ ...editItem, role: e.target.value })
+                }
+                className="w-full p-2 border mb-3 rounded"
+              />
             )}
-            <input type="text" placeholder="Bild-URL" value={editItem.image || ""} onChange={(e) => setEditItem({ ...editItem, image: e.target.value })} className="w-full p-2 border mb-3 rounded" />
+            <input
+              type="text"
+              placeholder="Bild-URL"
+              value={editItem.image || ""}
+              onChange={(e) =>
+                setEditItem({ ...editItem, image: e.target.value })
+              }
+              className="w-full p-2 border mb-3 rounded"
+            />
             <div className="flex justify-end gap-2">
-              <button className="bg-gray-500 text-white px-4 py-2 rounded" onClick={() => setEditItem(null)}>Abbrechen</button>
-              <button className="bg-green-600 text-white px-4 py-2 rounded" onClick={handleEditSubmit}>Speichern</button>
+              <button
+                className="bg-gray-500 text-white px-4 py-2 rounded"
+                onClick={() => setEditItem(null)}
+              >
+                Abbrechen
+              </button>
+              <button
+                className="bg-green-600 text-white px-4 py-2 rounded"
+                onClick={handleEditSubmit}
+              >
+                Speichern
+              </button>
             </div>
           </div>
         </div>
@@ -211,8 +326,3 @@ export default function AdminForm() {
     </div>
   );
 }
-
-
-
-
-
