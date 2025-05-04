@@ -100,7 +100,7 @@ export default function AdminForm() {
     <div className="min-h-screen bg-black text-white p-6 flex flex-col items-center relative">
       <button
         onClick={handleLogout}
-        className="absolute top-4 right-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+               className="fixed top-4 right-4 z-50 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 sm:top-6 sm:right-6"
       >
         LogOut
       </button>
