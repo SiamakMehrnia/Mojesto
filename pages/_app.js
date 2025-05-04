@@ -1,23 +1,28 @@
 // pages/_app.js
-import Navbar from "@/components/Navbat"; // مسیر درست بده
-import "@/styles/globals.css"; // اگر styles داری
+import Navbar from "../components/Navbat"; // ✅ مسیر درست رو چک کن
+import "@/styles/globals.css";
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }) {
+  const router = useRouter();
+
   useEffect(() => {
     AOS.init({
-      duration: 800, // مدت زمان انیمیشن (ms)
-      easing: 'ease-in-out', // نرمی انیمیشن
-      once: true, // فقط یکبار انیمیشن اجرا بشه
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
     });
   }, []);
 
+  const isAdminRoute = router.pathname.startsWith("/adminPanel");
+
   return (
     <div className="bg-black">
-      <Navbar />
-      <main className="pt-20"> {/* بخاطر fixed بودن navbar باید فاصله بدیم */}
+      {!isAdminRoute && <Navbar />}
+      <main className={!isAdminRoute ? "pt-20" : ""}>
         <Component {...pageProps} />
       </main>
     </div>

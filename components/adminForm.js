@@ -95,15 +95,26 @@ export default function AdminForm() {
     await fetch("/api/logout", { method: "POST" });
     router.push("/adminPanel/login");
   };
+  const handleBackToHome = () => {
+    router.push("/");
+  };
 
   return (
     <div className="min-h-screen bg-black text-white p-6 flex flex-col items-center relative">
-      <button
-        onClick={handleLogout}
-               className="fixed top-4 right-4 z-50 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 sm:top-6 sm:right-6"
-      >
-        LogOut
-      </button>
+<button
+  onClick={handleBackToHome}
+  className="fixed top-4 left-4 z-50 bg-green-600 text-white px-4 py-2 text-sm sm:text-base rounded hover:bg-green-700 sm:top-6 sm:left-6"
+>
+  ⬅ Back to Homepage
+</button>
+
+{/* LogOut - بالا راست */}
+<button
+  onClick={handleLogout}
+  className="fixed top-4 right-4 z-50 bg-red-600 text-white px-4 py-2 text-sm sm:text-base rounded hover:bg-red-700 sm:top-6 sm:right-6"
+>
+  LogOut
+</button>
 
       <h1 className="text-3xl font-bold mb-8">👨‍💼 Admin Panel</h1>
 
