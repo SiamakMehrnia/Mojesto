@@ -3,8 +3,5 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/adminPanel": "pages/adminPanel.js",
-  "/api/team/[id]": "pages/api/team/[id].js",
-  "/api/product": "pages/api/product.js",
-  "/api/team": "pages/api/team.js"
+  "/adminPanel": "pages/adminPanel.js"
 }
