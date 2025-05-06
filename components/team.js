@@ -78,7 +78,7 @@ export default function Team() {
           >
             <div className="w-32 h-32 mb-4 mx-auto">
               <img
-                src={member.image?.startsWith('http') ? member.image : `/uploads/${member.image}`}
+                src={member.image || "/default.jpg"}
                 alt={member.name}
                 className="w-full h-full object-cover rounded-full"
                 onError={(e) => {
