@@ -1,5 +1,11 @@
 import { connectToDatabase } from './../../../utils/mongodb';
-
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '10mb', // یا مثلاً '10mb' بسته به نیازت
+    },
+  },
+};
 export default async function handler(req, res) {
   const { db } = await connectToDatabase();
 

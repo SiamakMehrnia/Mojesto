@@ -260,12 +260,18 @@ export default function AdminForm() {
               />
             )}
             <input
-              type="text"
-              placeholder="Bild-URL"
-              value={newItem.image}
-              onChange={(e) =>
-                setNewItem({ ...newItem, image: e.target.value })
-              }
+                           type="file"
+                           accept="image/*"
+                           onChange={(e) => {
+                             const file = e.target.files[0];
+                             if (file) {
+                               const reader = new FileReader();
+                               reader.onloadend = () => {
+                                 setNewItem({ ...newItem, image: reader.result });
+                               };
+                               reader.readAsDataURL(file);
+                             }
+                           }}
               className="w-full p-2 border mb-3 rounded"
             />
             <div className="flex justify-end gap-2">
@@ -312,12 +318,18 @@ export default function AdminForm() {
               />
             )}
             <input
-              type="text"
-              placeholder="Bild-URL"
-              value={editItem.image || ""}
-              onChange={(e) =>
-                setEditItem({ ...editItem, image: e.target.value })
-              }
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                              const file = e.target.files[0];
+                              if (file) {
+                                const reader = new FileReader();
+                                reader.onloadend = () => {
+                                  setEditItem({ ...editItem, image: reader.result });
+                                };
+                                reader.readAsDataURL(file);
+                              }
+                            }}
               className="w-full p-2 border mb-3 rounded"
             />
             <div className="flex justify-end gap-2">
