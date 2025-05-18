@@ -31,7 +31,7 @@ export default function Navbar() {
       <div className="flex justify-between items-center p-3 md:p-4 max-w-6xl mx-auto">
         {/* Logo */}
         <div className="text-2xl md:text-3xl font-extrabold text-black animate-bounce-slow cursor-pointer">
-          Mojesto
+          shop
         </div>
 
         {/* Desktop Menu */}

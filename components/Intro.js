@@ -3,7 +3,7 @@ export default function Intro() {
     <section className="relative min-h-screen bg-black px-6 pt-28 scroll-mt-48">
       {/* Fixed Mojesto Title at top center */}
       <div className="absolute top-6 left-1/2 transform -translate-x-1/2 z-20">
-        <h1 className="text-5xl md:text-6xl font-bold text-white">Mojesto</h1>
+        <h1 className="text-5xl md:text-6xl font-bold text-white">shop</h1>
       </div>
 
       {/* Central white card with more details */}
@@ -12,7 +12,7 @@ export default function Intro() {
           {/* Box with image instead of Willkommen */}
           <div className="bg-white text-black rounded-lg">
             <img
-              src="https://lh3.googleusercontent.com/p/AF1QipNNRdutRniK26N6vyeF4YQCvtEBa_ZmRJ_4bVDD=s1360-w1360-h1020-rw"
+              src="https://martinmax.de/wp-content/uploads/2021/01/martin-max-friseur-laden-innen.jpg"
               alt="Image Box"
               className="w-full h-auto object-cover rounded-lg"
             />
